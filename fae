@@ -1,0 +1,6 @@
+product_reviews
+product_id*
+product_rating
+product_review
+date_recorded
+shopper_id*
