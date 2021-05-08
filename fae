@@ -3,4 +3,71 @@ product_id*
 product_rating
 product_review
 date_recorded
-shopper_id*
+shopper_id*	CREATE VIEW [products and reviews] AS  
+	SELECT   
+	      product_id AS [product id]  
+	     ,product_rating AS [rating]  
+	     ,product_review AS [review]  
+	     ,shopper_id AS [shopper id]  
+	     ,shopper_first_name AS [reviewed by:]  
+	FROM products p  
+	    INNER JOIN  
+	    product_reviews pr ON pr.product_id = p.product_id  
+	    INNER JOIN  
+	    shoppers s ON s.shopper_id = pr.shopper_id  
+	ORDER BY shopper_first_name  
+	; 
+	 
+	CREATE VIEW [products and QnA] AS  
+	SELECT  
+	      product_description AS [description]  
+	     ,product_id AS [product id]
+	     ,question  
+	     ,answer  
+	     ,question_number AS [question number]      
+	FROM products p  
+	    INNER JOIN  
+	    product_QnA pq ON pq.product_id = p.product_id  
+	ORDER BY question_number  
+	; 
+	 
+	CREATE VIEW [sellers and reviews] AS  
+	SELECT   
+	      seller_id AS [seller id]  
+	     ,seller_name  
+	     ,seller_rating AS [rating]  
+	     ,seller_review AS [review]  
+	     ,shopper_id AS [shopper id]  
+	     ,shopper_first_name AS [reviewed by:]  
+	FROM sellers s  
+	    INNER JOIN  
+	    seller_reviews sr ON sr.seller_id = s.seller_id  
+	    INNER JOIN  
+	    shoppers sh ON sh.shopper_id = sr.shopper_id  
+	ORDER BY seller_name  
+	;  
+
+
+1. Display your order history
+
+2. Add an item to your basket
+
+3. View your basket
+
+4. Change the quantity of an item in your basket
+
+5. Remove an item from your basket
+
+6. Checkout
+
+7. Exit
+
+print('ORINOCO - SHOPPER MAIN MENU\
+            \n_______________________________________________\
+             \n1.Display your order history \
+             \n2.add an item to your basket \
+             \n3.view your basket \
+			 \n4.Change the quantity of an item in your basket
+			 \n5.Remove an item from your basket
+             \n6.checkout \
+             \n7.exit')
